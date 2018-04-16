@@ -11,12 +11,16 @@ while hObject.Value
     wait(pix);
     thisMask = createMask(pix);
     thisArea = sum(thisMask(:));
+
     animalPoints(n).area = thisArea;
     animalPoints(n).colorsRGB = getPatchMean(I,thisMask);
     animalPoints(n).colorsXYZ = rgb2xyz(uint8(255*animalPoints(n).colorsRGB));
+    animalPoints(n).mask = thisMask;
+    
     figData.animalPoints = animalPoints;
     guidata(gcf,figData);
     n = n+1;
 end
+
 
 
